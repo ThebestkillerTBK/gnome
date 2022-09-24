@@ -39,7 +39,8 @@ class PrivateChat : GModule("private-chat", "Turns your chat into a private conv
         }.forEach {
             mc.player().sendCommand(dmFormat().withoutPrefix("/")
                 .replace("{player}", it.profile.name)
-                .replace("{message}", event.message)
+                .replace("{message}", event.message),
+                null
             )
         }
 
