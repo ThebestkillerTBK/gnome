@@ -1,5 +1,6 @@
 plugins {
     id 'fabric-loom' version '0.12-SNAPSHOT'
+    id "org.jetbrains.kotlin.jvm" version "1.7.10"
 }
 
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
@@ -27,6 +28,8 @@ dependencies {
 
     // Meteor
     modImplementation "meteordevelopment:meteor-client:${project.meteor_version}"
+
+    modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
 }
 
 processResources {
@@ -37,4 +40,9 @@ processResources {
 
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding("UTF-8")
+}
+
+compileKotlin {
+    kotlinOptions.freeCompilerArgs += "-Xcontext-receivers"
+    kotlinOptions.jvmTarget = "17"
 }

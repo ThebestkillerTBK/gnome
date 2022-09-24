@@ -10,7 +10,7 @@ public class Addon extends MeteorAddon {
 
     @Override
     public void onInitialize() {
-        //todo
+        Modules modules = Modules.get();
     }
 
     @Override
