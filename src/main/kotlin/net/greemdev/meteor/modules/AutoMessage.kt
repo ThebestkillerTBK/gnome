@@ -9,7 +9,6 @@ package net.greemdev.meteor.modules
 
 import kotlinx.coroutines.*
 import meteordevelopment.meteorclient.events.world.TickEvent
-import meteordevelopment.meteorclient.gui.GuiTheme
 import meteordevelopment.meteorclient.gui.widgets.WWidget
 import meteordevelopment.meteorclient.utils.misc.MeteorStarscript
 import meteordevelopment.orbit.EventHandler
@@ -96,42 +95,6 @@ class AutoMessage : GModule(
             elapsedTicksCommands = 0
         }
     }
-
-    override fun getWidget(theme: GuiTheme): WWidget =
-        theme.table().apply {
-            add(theme.button("Starscript Info") {
-                Util.getOperatingSystem().open("https://github.com/GreemDev/meteor/wiki/Starscript")
-            })
-
-            add(theme.button("Test Current") {
-                try {
-                    messageScript?.let {
-                        MeteorStarscript.run(it)
-                    }
-                } catch (e: StarscriptError) {
-                    error("Message failed: ${e.message}")
-                    null
-                }?.also {
-                    info("Message success: $it")
-                }
-
-                if (commandScripts.isEmpty()) {
-                    warning("Not testing any command scripts; there are none.")
-                } else {
-                    commandScripts.forEach {
-                        try {
-                            MeteorStarscript.run(it)
-                        } catch (e: StarscriptError) {
-                            error("Command failed: ${e.message}")
-                            null
-                        }?.also { cmd ->
-                            info("Command success: $cmd")
-                        }
-                    }
-                }
-            })
-        }
-
 
     private fun recompile(scripts: List<String>) {
         commandScripts = scripts.map {

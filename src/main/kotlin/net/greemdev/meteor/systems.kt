@@ -6,6 +6,7 @@
 package net.greemdev.meteor
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
+import me.soda.gnome.Gnome
 import meteordevelopment.meteorclient.events.meteor.KeyEvent
 import meteordevelopment.meteorclient.events.meteor.MouseButtonEvent
 import meteordevelopment.meteorclient.systems.commands.Command
@@ -16,7 +17,7 @@ import net.greemdev.meteor.event.GameInputEvent
 import net.greemdev.meteor.util.meteor.group
 import net.minecraft.command.CommandSource
 
-abstract class GModule(name: String, description: String) : Module(Greteor.category(), name, description) {
+abstract class GModule(name: String, description: String) : Module(Gnome.CATEGORY, name, description) {
     protected val sg by lazy { settings.group() }
     open fun onGameInput(event: GameInputEvent) {}
 

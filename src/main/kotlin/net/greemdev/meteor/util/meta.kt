@@ -8,7 +8,10 @@ package net.greemdev.meteor.util
 
 import meteordevelopment.meteorclient.gui.utils.StarscriptTextBoxRenderer
 import meteordevelopment.meteorclient.gui.widgets.pressable.WPressable
-import meteordevelopment.meteorclient.settings.*
+import meteordevelopment.meteorclient.settings.DoubleSetting
+import meteordevelopment.meteorclient.settings.IntSetting
+import meteordevelopment.meteorclient.settings.StringListSetting
+import meteordevelopment.meteorclient.settings.StringSetting
 import net.fabricmc.loader.api.FabricLoader
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
@@ -148,7 +151,7 @@ fun StringListSetting.Builder.renderStarscript(): StringListSetting.Builder =
 
 fun <P1, P2> Collection<Pair<P1, P2>>.associate() = associate { it }
 
-fun IntSetting.Builder.saneSlider(): IntSetting.Builder = sliderRange(min, max)
+fun IntSetting.Builder.saneSlider(): IntSetting.Builder = sliderRange(Int.MIN_VALUE, Int.MAX_VALUE)
 fun DoubleSetting.Builder.saneSlider(): DoubleSetting.Builder = sliderRange(min, max)
 
 inline fun <reified T> javaSubtypesOf(pkg: String): Set<Class<out T>> =

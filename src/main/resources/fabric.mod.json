@@ -10,7 +10,7 @@
   "environment": "client",
   "entrypoints": {
     "meteor": [
-      "me.soda.gnome.Addon"
+      "me.soda.gnome.Gnome"
     ]
   },
   "mixins": [
